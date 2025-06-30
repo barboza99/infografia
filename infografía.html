@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Tendencias para Desarrolladores de Software (2021-2025)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 640px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: #004AAD;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .stat-label {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #004AAD;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #334155;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .card {
+             background-color: white;
+             border-radius: 0.75rem;
+             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+             padding: 1.5rem;
+             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .flowchart-step {
+            border: 2px solid #5AA0FF;
+            background-color: #DDEEFF;
+            color: #004AAD;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #5AA0FF;
+            align-self: center;
+        }
+        .tooltip-multiline {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-700">
+
+    <header class="bg-[#004AAD] text-white text-center py-12 px-4">
+        <h1 class="text-4xl md:text-5xl font-black tracking-tight">Ruta del Desarrollador Moderno</h1>
+        <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-blue-200">Una guía visual de las tecnologías con mayor auge (2021-2025) para desarrolladores de software.</p>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        
+        <section class="text-center mb-16">
+            <h2 class="section-title">Un Mercado en Plena Expansión</h2>
+            <p class="section-subtitle">El desarrollo de software es una industria con un crecimiento robusto y sostenido, presentando oportunidades significativas para profesionales cualificados.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="stat-card">
+                    <span class="stat-number">>20%</span>
+                    <span class="stat-label">Crecimiento Proyectado de Empleo para Ingenieros Backend (2021-2031)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">16,500</span>
+                    <span class="stat-label">Nuevos Empleos Anuales para Desarrolladores Web (2023-2033)</span>
+                </div>
+            </div>
+        </section>
+        
+        <section id="frontend" class="mb-16">
+            <div class="text-center">
+                <h2 class="section-title">La Frontera del Front-End</h2>
+                <p class="section-subtitle">La creación de experiencias de usuario dinámicas e interactivas es impulsada por un ecosistema de JavaScript en constante evolución, con un claro enfoque en el rendimiento y la escalabilidad.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
+                <div class="card md:col-span-2">
+                    <h3 class="font-bold text-xl mb-1 text-center">Popularidad de Frameworks Web (2021-2024)</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">React.js mantiene su dominio, mientras que Next.js muestra un crecimiento acelerado. Los datos reflejan el porcentaje de uso entre todos los desarrolladores encuestados.</p>
+                    <div class="chart-container h-[450px] max-h-[500px]">
+                        <canvas id="frameworksChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-1 text-center">El Auge Imparable de TypeScript</h3>
+                     <p class="text-center text-sm text-slate-500 mb-4">La adopción de TypeScript es masiva, convirtiéndose en esencial para proyectos a gran escala por su seguridad de tipos y robustez.</p>
+                    <div class="chart-container h-72">
+                        <canvas id="typescriptChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-1 text-center">El Framework Más Amado: Svelte</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">Svelte se gana el corazón de los desarrolladores por su enfoque compilado que genera JavaScript puro, resultando en aplicaciones notablemente rápidas y eficientes.</p>
+                    <div class="chart-container h-72">
+                        <canvas id="lovedFrameworkChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="backend" class="mb-16">
+            <div class="text-center">
+                <h2 class="section-title">La Columna Vertebral del Back-End</h2>
+                <p class="section-subtitle">La infraestructura que impulsa las aplicaciones modernas exige lenguajes de alto rendimiento, arquitecturas escalables y bases de datos robustas y flexibles.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card lg:col-span-2">
+                    <h3 class="font-bold text-xl mb-1 text-center">Lenguajes de Programación Back-End Más Populares (2024)</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">JavaScript (con Node.js) y Python lideran la popularidad, mientras que lenguajes como Go y Rust crecen por su enfoque en el alto rendimiento y la seguridad.</p>
+                    <div class="chart-container h-96 max-h-[450px]">
+                        <canvas id="backendLangsChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-1 text-center">El Lenguaje Más Amado: Rust</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">Por noveno año consecutivo, Rust es el lenguaje más querido. Su garantía de seguridad de memoria sin un recolector de basura lo hace único para sistemas de alto rendimiento.</p>
+                     <div class="chart-container h-72">
+                        <canvas id="lovedLangChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card lg:row-span-2">
+                    <h3 class="font-bold text-xl mb-1 text-center">Cambio de Guardia en Bases de Datos</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">PostgreSQL ha superado a MySQL como la base de datos más popular entre desarrolladores profesionales, destacando por su extensibilidad y robustez para aplicaciones complejas.</p>
+                    <div class="chart-container h-[450px] max-h-[500px]">
+                        <canvas id="databasesChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-1 text-center">La Base de Datos Más Deseada: PostgreSQL</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">Además de ser la más popular y amada, PostgreSQL es la que más desarrolladores desean aprender, consolidando su posición como el estándar de oro para datos relacionales.</p>
+                    <div class="chart-container h-72">
+                        <canvas id="desiredDBChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transversal" class="mb-16">
+            <div class="text-center">
+                <h2 class="section-title">Habilidades Transversales Esenciales</h2>
+                <p class="section-subtitle">Más allá del código, el desarrollador moderno debe dominar la infraestructura en la nube, las prácticas de DevOps y las herramientas de IA que están redefiniendo la productividad.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-1 text-center">Dominio del Cloud Computing</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">AWS, Azure y GCP controlan dos tercios del mercado de la nube, haciendo que la experiencia en estas plataformas sea indispensable.</p>
+                     <div class="chart-container h-80">
+                        <canvas id="cloudChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-1 text-center">DevOps: El Estándar de la Industria</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">La contenerización es fundamental. Docker y Kubernetes son las herramientas más utilizadas, amadas y deseadas para automatizar despliegues.</p>
+                    <div class="chart-container h-80">
+                        <canvas id="devopsChart"></canvas>
+                    </div>
+                </div>
+                <div class="card md:col-span-2 lg:col-span-1">
+                    <h3 class="font-bold text-xl mb-1 text-center">La IA como Copiloto</h3>
+                    <p class="text-center text-sm text-slate-500 mb-4">La Inteligencia Artificial no reemplaza a los desarrolladores, los potencia. La mayoría ya utiliza herramientas de IA en su flujo de trabajo.</p>
+                    <div class="flex flex-col items-center justify-center h-80">
+                        <span class="text-7xl">🤖</span>
+                        <div class="stat-number text-[#004AAD] mt-4">70%</div>
+                        <div class="text-center font-semibold text-lg mt-2">De los desarrolladores ya usan herramientas de IA como ChatGPT o GitHub Copilot.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="learning-path" class="mb-16">
+            <div class="text-center">
+                <h2 class="section-title">Ruta de Aprendizaje Estratégica</h2>
+                <p class="section-subtitle">Para prosperar en este entorno dinámico, se necesita un enfoque estructurado que combine fundamentos sólidos, especialización y experiencia práctica.</p>
+            </div>
+            <div class="w-full max-w-4xl mx-auto p-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+                    <div class="flowchart-step">1. Dominar los Fundamentos<br><span class="text-sm font-normal">(Algoritmos, Estructuras de Datos)</span></div>
+                    <div class="flowchart-arrow hidden md:block">➔</div>
+                     <div class="flowchart-arrow block md:hidden text-center transform rotate-90 my-2">↓</div>
+                    <div class="flowchart-step">2. Especialización<br><span class="text-sm font-normal">(Front-End, Back-End, DBs)</span></div>
+                    <div class="flowchart-arrow hidden md:block">➔</div>
+                    <div class="flowchart-arrow block md:hidden text-center transform rotate-90 my-2">↓</div>
+                    <div class="flowchart-step">3. Habilidades Transversales<br><span class="text-sm font-normal">(Cloud, DevOps, IA)</span></div>
+                </div>
+                 <div class="flex justify-end mt-4">
+                     <div class="flowchart-arrow transform rotate-90 md:rotate-0">↓</div>
+                 </div>
+                 <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-4 mt-4">
+                     <div></div>
+                     <div class="flowchart-arrow hidden md:block transform -scale-x-100">➔</div>
+                     <div class="flowchart-step">4. Experiencia Práctica<br><span class="text-sm font-normal">(Proyectos, Open Source)</span></div>
+                      <div class="flowchart-arrow block md:hidden text-center transform rotate-90 my-2">↓</div>
+                     <div class="flowchart-step">5. Aprendizaje Continuo<br><span class="text-sm font-normal">(Comunidades, Documentación)</span></div>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 bg-slate-800 text-slate-400">
+        <p>Infografía creada por Canvas Infographics.</p>
+        <p class="text-sm mt-1">Datos basados en el "Reporte de Tendencias Tecnológicas para Desarrolladores de Software (2021-2025)".</p>
+    </footer>
+
+    <script>
+        const brilliantBlues = ['#004AAD', '#0062FF', '#5AA0FF', '#AACCFF', '#DDEEFF'];
+        const brilliantBluesReversed = [...brilliantBlues].reverse();
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const commonTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: { title: tooltipTitleCallback },
+                    backgroundColor: '#004AAD',
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                    cornerRadius: 4,
+                    displayColors: false,
+                    bodyAlign: 'center',
+                }
+            }
+        };
+        
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        new Chart(document.getElementById('frameworksChart'), {
+            type: 'bar',
+            data: {
+                labels: ['React.js', 'Angular', 'Vue.js', 'Next.js', 'jQuery', 'Express'],
+                datasets: [
+                    { label: '2021', data: [40.14, 22.96, 18.97, 0, 34.42, 23.82], backgroundColor: brilliantBlues[3] },
+                    { label: '2022', data: [42.62, 20.39, 18.82, 13.52, 28.57, 22.99], backgroundColor: brilliantBlues[2] },
+                    { label: '2023', data: [40.58, 17.46, 16.38, 16.67, 21.98, 19.28], backgroundColor: brilliantBlues[1] },
+                    { label: '2024', data: [39.5, 17.1, 15.4, 17.9, 21.4, 17.8], backgroundColor: brilliantBlues[0] }
+                ]
+            },
+            options: { ...commonTooltipOptions, maintainAspectRatio: false, indexAxis: 'x', scales: { y: { beginAtZero: true, title: { display: true, text: 'Popularidad (%)' } } } }
+        });
+
+        new Chart(document.getElementById('typescriptChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Escriben más TypeScript que JavaScript', 'Otros'],
+                datasets: [{
+                    data: [67, 33],
+                    backgroundColor: [brilliantBlues[0], brilliantBlues[3]],
+                    borderColor: '#fff',
+                    borderWidth: 4,
+                }]
+            },
+            options: { ...commonTooltipOptions, maintainAspectRatio: false, cutout: '70%', plugins: { ...commonTooltipOptions.plugins, legend: { position: 'bottom' } } }
+        });
+
+        new Chart(document.getElementById('lovedFrameworkChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Svelte', 'Otros Frameworks'],
+                datasets: [{
+                    data: [73, 27],
+                    backgroundColor: [brilliantBlues[0], brilliantBlues[3]],
+                    borderColor: '#fff',
+                    borderWidth: 4,
+                }]
+            },
+            options: { ...commonTooltipOptions, maintainAspectRatio: false, cutout: '70%', plugins: { ...commonTooltipOptions.plugins, legend: { position: 'bottom' } } }
+        });
+
+        const backendLangsLabels = ['JavaScript (Node.js)', 'Python', 'Java', 'C#', 'PHP', 'Go', 'Rust'];
+        new Chart(document.getElementById('backendLangsChart'), {
+            type: 'bar',
+            data: {
+                labels: backendLangsLabels.map(wrapLabel),
+                datasets: [{
+                    label: 'Popularidad 2024 (%)',
+                    data: [62.3, 51, 30.3, 27.1, 18.2, 13.5, 12.6],
+                    backgroundColor: brilliantBlues[1],
+                    borderColor: brilliantBlues[0],
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonTooltipOptions, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { beginAtZero: true, title: { display: true, text: 'Popularidad (%)' } } }, plugins: { ...commonTooltipOptions.plugins, legend: { display: false } } }
+        });
+
+        new Chart(document.getElementById('lovedLangChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Rust', 'Otros Lenguajes'],
+                datasets: [{
+                    data: [85, 15],
+                    backgroundColor: [brilliantBlues[0], brilliantBlues[3]],
+                    borderColor: '#fff',
+                    borderWidth: 4,
+                }]
+            },
+            options: { ...commonTooltipOptions, maintainAspectRatio: false, cutout: '70%', plugins: { ...commonTooltipOptions.plugins, legend: { position: 'bottom' } } }
+        });
+        
+        new Chart(document.getElementById('databasesChart'), {
+            type: 'line',
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [
+                    {
+                        label: 'PostgreSQL',
+                        data: [44.08, 46.48, 49.09, 51.9],
+                        borderColor: brilliantBlues[0],
+                        backgroundColor: brilliantBlues[0] + '33',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'MySQL',
+                        data: [48.19, 45.68, 40.59, 39.4],
+                        borderColor: brilliantBlues[2],
+                        backgroundColor: brilliantBlues[2] + '33',
+                        fill: true,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: { ...commonTooltipOptions, maintainAspectRatio: false, scales: { y: { beginAtZero: false, title: { display: true, text: 'Popularidad entre Profesionales (%)' } } } }
+        });
+
+        new Chart(document.getElementById('desiredDBChart'), {
+            type: 'pie',
+            data: {
+                labels: ['PostgreSQL', 'MongoDB', 'Redis', 'Otros'],
+                datasets: [{
+                    data: [65, 45, 30, 100 - (65+45+30)], 
+                    backgroundColor: [brilliantBlues[0], brilliantBlues[1], brilliantBlues[2], brilliantBlues[3]],
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                }]
+            },
+             options: { ...commonTooltipOptions, maintainAspectRatio: false, plugins: { ...commonTooltipOptions.plugins, legend: { position: 'bottom' } } }
+        });
+
+
+        new Chart(document.getElementById('cloudChart'), {
+            type: 'pie',
+            data: {
+                labels: ['AWS', 'Azure', 'Google Cloud', 'Otros'],
+                datasets: [{
+                    label: 'Cuota de Mercado',
+                    data: [31, 21, 12, 36],
+                    backgroundColor: [brilliantBlues[0], brilliantBlues[1], brilliantBlues[2], brilliantBlues[3]],
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                }]
+            },
+            options: { ...commonTooltipOptions, maintainAspectRatio: false, plugins: { ...commonTooltipOptions.plugins, legend: { position: 'bottom' } } }
+        });
+        
+        const devopsLabels = ['Docker', 'Kubernetes'];
+        new Chart(document.getElementById('devopsChart'), {
+            type: 'bar',
+            data: {
+                labels: devopsLabels.map(wrapLabel),
+                datasets: [{
+                    label: 'Uso por Profesionales (%)',
+                    data: [59, 45],
+                    backgroundColor: [brilliantBlues[1], brilliantBlues[2]],
+                    borderRadius: 4,
+                }]
+            },
+            options: { ...commonTooltipOptions, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { beginAtZero: true, max: 100 } }, plugins: { ...commonTooltipOptions.plugins, legend: { display: false } } }
+        });
+    </script>
+</body>
+</html>
